@@ -26,10 +26,11 @@
         <meta name="color:Background Color" content="" />
         <meta name="color:Title Color" content="#000" />
         <meta name="color:Title Shadow Color" content="#ff9966" />
-        <meta name="color:Mobile Nav Icon" content="#281f1f" />
-        <meta name="color:Mobile Nav Font" content="#281f1f" />
-        <meta name="color:Mobile Nav Background" content="silver" />
-        <meta name="color:Mobile Nav Hover" content="#fffaf0" />
+        <meta name="color:Menu Icon" content="#281f1f" />
+        <meta name="color:Menu Close Icon" content="#281f1f" />
+        <meta name="color:Menu Font Color" content="#281f1f" />
+        <meta name="color:Menu Font Hover" content="#fffaf0" />
+        <meta name="color:Menu Background" content="silver" />
         <meta name="color:Posts Scroll Color" content="#281f1f" />
         <meta name="font:Body Font" content="Reey" title="Reey" />
         <meta name="if:Infinite Scroll" content="1" />
@@ -62,6 +63,8 @@
         <meta name="text:Nav Label 3" content="random" />
         <meta name="text:Nav Link 4" content="https://yourblog.tumblr.com/yourpage" />
         <meta name="text:Nav Label 4" content="Page" />
+        <meta name="text:Nav Link 5" content="https://yourblog.tumblr.com/yourpage" />
+        <meta name="text:Nav Label 5" content="Page" />
         <meta name="text:Tags Font Size" content="2em" />
         <meta name="text:Ask Post Title" content="So, someone asked..." />
         <meta name="text:Disqus Shortname" content="" />
@@ -76,7 +79,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao|Nanum+Brush+Script&display=swap" />
     <link rel="stylesheet" href="https://static.tumblr.com/xeccbfq/9Qenv9yn8/normalize.min.css" />
     <link rel="stylesheet" href="https://static.tumblr.com/kifah6n/UoBpzybql/styles.min.css" />
-    <link rel="stylesheet" href="https://static.tumblr.com/kifah6n/kDaq1dgys/edwin.min.css" />
+    <link rel="stylesheet" href="https://static.tumblr.com/kifah6n/fguq23qaq/edwin.min.css" />
     <link rel="stylesheet" href="https://static.tumblr.com/kifah6n/z60pzydpr/pxu-photoset.min.css" />
       
     <style type="text/css">
@@ -109,19 +112,23 @@
         }
         
         #menutoggle span {
-            background: {color:Mobile Nav Icon};
+            background: {color:Menu Icon};
+        }
+        
+        #menutoggle input:checked ~ span {
+            background: {color:Menu Close Icon};
         }
         
         #menu {
-            background: {color:Mobile Nav Background};
+            background: {color:Menu Background};
         }
         
         #menu a {
-            color: {color:Mobile Nav Font};
+            color: {color:Menu Font Color};
         }
         
         #menu a:hover {
-            background: {color:Mobile Nav Hover};
+            background: {color:Menu Font Hover};
         }
         
         .tags {
@@ -402,8 +409,7 @@
 
 <body>
     <div id="blog-title"><a href="{BlogURL}">{Title}</a></div>
-    <!-- Mobile Menu <= 600px -->
-    <nav role="navigation">
+    <nav id="nav" role="navigation">
         <div id="menutoggle">
             <input type="checkbox" />
             <!-- Hamburger "Icon" -->
@@ -411,10 +417,6 @@
             <span></span>
             <span></span>
             <ul id="menu">
-                <a href="{text:Nav Link 1}">{text:Nav Label 1}</a>
-                <a href="{text:Nav Link 2}">{text:Nav Label 2}</a>
-                <a href="{text:Nav Link 3}">{text:Nav Label 3}</a>
-                <a href="{text:Nav Link 4}">{text:Nav Label 4}</a>
                 {block:HasPages}
                     {block:Pages}
                         <a href="{URL}">{Label}</a>
@@ -427,6 +429,30 @@
         </div>
     </nav>
     <div class="main row">
+        <!-- Mobile Menu - All Pages <= 600px -->
+        <nav id="nav-mobile" role="navigation">
+            <div id="menutoggle">
+                <input type="checkbox" />
+                <!-- Hamburger "Icon" -->
+                <span></span>
+                <span></span>
+                <span></span>
+                <ul id="menu">
+                    <a href="{text:Nav Link 1}">{text:Nav Label 1}</a>
+                    <a href="{text:Nav Link 2}">{text:Nav Label 2}</a>
+                    <a href="{text:Nav Link 3}">{text:Nav Label 3}</a>
+                    <a href="{text:Nav Link 4}">{text:Nav Label 4}</a>
+                    {block:HasPages}
+                        {block:Pages}
+                            <a href="{URL}">{Label}</a>
+                        {/block:Pages}
+                    {/block:HasPages}
+                    {block:AskEnabled}
+                        <a href="/ask">{AskLabel}</a>
+                    {/block:AskEnabled}
+                </ul>
+            </div>
+        </nav>
         <div class="camera column">
             <a id="cam-link" href="{text:Camera Link}">{text:Camera Link Label}</a>
             {block:Description}
@@ -738,16 +764,7 @@
                     {/block:IfNotShowSearchBox}
                 </div>
                 <div class="nav-note5">
-                    {block:HasPages}
-                        <div class="note5-wrapper">
-                            {block:Pages}
-                                <a href="{URL}">{Label}</a>
-                            {/block:Pages}
-                            {block:AskEnabled}
-                                <a href="/ask">{AskLabel}</a>
-                            {/block:AskEnabled}
-                        </div>
-                    {/block:HasPages}
+                    <a href="{text:Nav Link 5}">{text:Nav Label 5}</a>
                 </div>
             </div>
         </div>
